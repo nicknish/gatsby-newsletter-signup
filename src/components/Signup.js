@@ -8,6 +8,7 @@ const Signup = () => {
   const handleSubmit = () => {
     /* TODO: Submit email to Mailchimp */
     /* If error, then update error and display it */
+    /* Else clear email field and show submitted */
     updateEmail("")
     updateSubmitted(true)
   }
