@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "gatsby-newsletter-signup",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A demo app to demonstrate Netlify functions and implmenting Mailchimp newsletter signup",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Nick Nish <nickjnish@gmail.com>",
   "dependencies": {
     "gatsby": "^2.15.15",
     "gatsby-image": "^2.2.19",
@@ -22,7 +22,10 @@
     "prettier": "^1.18.2"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "mailchimp",
+    "netlify",
+    "newsletter"
   ],
   "license": "MIT",
   "scripts": {
@@ -35,9 +38,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/nicknish/gatsby-newsletter-signup"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/nicknish/gatsby-newsletter-signup/issues"
   }
 }
