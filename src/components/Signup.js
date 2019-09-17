@@ -1,17 +1,35 @@
-import React, { useState } from "react"
+import React, { useState } from 'react'
+import axios from 'axios'
 
 const Signup = () => {
   const [submitted, updateSubmitted] = useState(false)
-  const [error, updateError] = useState("")
-  const [email, updateEmail] = useState("")
+  const [error, updateError] = useState('')
+  const [email, updateEmail] = useState('')
 
-  const handleSubmit = () => {
-    /* TODO: Submit email to Mailchimp */
-    /* If error, then update error and display it */
-    /* Else clear email field and show submitted */
-    updateEmail("")
-    updateSubmitted(true)
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    axios
+      .post(
+        '/.netlify/functions/signup',
+        { email },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
+      .then(({ data }) => {
+        if (data.status === 'success') {
+          updateSubmitted(true)
+          updateEmail('')
+          updateError('')
+        } else {
+          updateError('Oops, there was an issue.')
+        }
+      })
+      .catch(error => {
+        updateError(error.response.data.error)
+      })
   }
+
+  if (submitted) return <p>You're in the know!</p>
 
   return (
     <form onSubmit={handleSubmit}>
@@ -19,11 +37,13 @@ const Signup = () => {
       <div>
         <label>Email</label>
       </div>
-      <input type="email" value={email} onChange={updateEmail} />
-
-      {submitted && <p>You're in the know!</p>}
-      {error && !submitted(<p>Please enter a valid email.</p>)}
+      <input
+        type="email"
+        value={email}
+        onChange={e => updateEmail(e.target.value)}
+      />
       <button type="submit">Submit</button>
+      {error && <p>{error}</p>}
     </form>
   )
 }
